@@ -47,7 +47,7 @@ A = 1:10
 a=linspace(1, 10, 10)
 
 B=10:2:18
-b=linspace (10, 18. 5)
+b=linspace (10, 18, 5)
 
 C = 19:-1:15
 c-linspace(19, 15, 5)
@@ -85,7 +85,7 @@ resp='rerekerererererererererererererererere'
 disp(resp(5))
 resp(5)='r'
 resp(5);
-disp(resp(2:2:end)
+disp(resp(2:2:end))
 %% 2.7
 vect=3:10
 vect(5:-1:2)
@@ -158,3 +158,44 @@ fakefmri(7, 10, 4, :)
 plot(squeeze(fakefmir(7, 10, 4, :)))
 imagesc(squeeze(fakefmri(:, :, 4,5)))
 imagesc(squeeze(fakefmri(:, :, 7, 5)))
+%% Lecture Notes 1/17/18
+mat1=[1 2; 3 4];
+mat2=[2 4; 4 5];
+mat1.*mat2 %point-by-point multiplication
+mat1 * mat2 % cl of 1 by row of 2
+%% fakeBrain
+TR=2;%how long it takes to do an image. 2 sec/image
+t=1:TR:239;
+brain=randn(64, 64, 28, 120);
+% happy=repmat(0, 20, 1);
+% size(happy)
+% sad=repmat(1, 10, 1);
+% %happysad=[happy sad];%alternating
+% happysad' %transpose
+% happysad=[happy; sad];
+% % OR! happysad=[happy sad]; happysad=happysad(:)
+% %DIVERSION: colon can create a vector out of a matrix e.g.
+% mat=[1 2 3
+%     4 5 6]
+% vect=mat(:)
+% vect
+% 
+% design = repmat(happysad, 6, 1);
+
+design=repmat([repmat(0, 10, 1); repmat(1, 10 ,1)], 6, 1);
+ROI = [20:30, 12:40, 18:23];
+
+brain(20:30, 12:40, 18:23, find(design))=...
+    brain(20:30, 12:40, 18:23, find(design))-1;
+imagesc(brain(:, :, 20,13));
+sad=mean(brain(:, :, 20, find(design)), 4);
+subplot (1, 2, 1)
+imagesc(squeeze(sad))
+axis equal
+
+%%
+mat(:, :, 1)=[1 2 3; 4 5 6];
+mat(:, :, 2)=[7 8 9; 10 11 12];
+mat(2, 2:3, 1)
+
+
