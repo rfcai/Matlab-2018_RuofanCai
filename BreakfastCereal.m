@@ -1,4 +1,6 @@
 %written RC 1/8/18 for P538 Matlab 2018
+
+
 frosted='FROSTED FLAKES'
 cheerios= 'CHEERIOS';
 frosted_scrambled=frosted;
@@ -73,7 +75,7 @@ str([2 5 8 11 14 17 20])=['b']
 str([4 5 6])= ['d' 'e' 'f']
 str([6 12 18])
 
-%str([3+(1:3) 7+(1:3) 15+(1:3)]) = 'defdefdef'
+str([3+(1:3) 7+(1:3) 15+(1:3)]) = 'defdefdef'
 
 %% 2.5
 
