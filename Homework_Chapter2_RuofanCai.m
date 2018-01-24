@@ -15,7 +15,7 @@ str(3)='L'
 str(11)='P'
 
 % b) Start with a string containing It s pouring with rain and replace the p with an r and the r with a p.
-str_b= 'It s pouring with rain'
+str_b= 'It''s pouring with rain' % clever eh!
 str_b(6)='r'
 str_b(9)='p'
 str_b(19)='p'
