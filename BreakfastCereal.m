@@ -201,3 +201,6 @@ mat(:, :, 2)=[7 8 9; 10 11 12];
 mat(2, 2:3, 1)
 
 
+%%
+isfinite(x) %when you know there are invalid numbers in your vector. e.g. Inf NaN -Inf
+image(img)
