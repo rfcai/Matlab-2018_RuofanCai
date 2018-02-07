@@ -123,7 +123,7 @@ ind2sub(size(mat),find(mat >= 15))
 % b) Find out how many scores greater or equal to 15 
 % there were among people who didn’t get the cup of tea.
 
-% 4 scores. 
+'THERE ARE 4 SCORES greater or equal to 15 who didn't get the cup of tea.'
 [r, c, v]= ind2sub(size(mat),find(mat >= 15))
 % there are four "v=2"
 
@@ -134,19 +134,40 @@ mat(mat<=4)=nan
 % (not including values less than or equal to 4).
 % If you feel very brave do it without using nonanmean from 
 % the github account
-mean(mat(:,1,:),'omitnan')
-mean(mat(:,2,:), 'omitnan')
-mean(mat(:,3,:), 'omitnan')
-mean(mat(:,4,:), 'omitnan')
-mean(mat(:,5,:), 'omitnan')
-mean(mat(:,6,:), 'omitnan')
-mean(mat(:,7,:), 'omitnan')
-mean(mat(:,8,:), 'omitnan')
+mean(mat(:,1,:), 'omitnan') %=8.75 with tea, 11 without tea
+mean(mat(:,2,:), 'omitnan') %=13.25 with tea, 9.5 without tea
+mean(mat(:,3,:), 'omitnan') %=13.25 with tea, 15.6667 without tea
+mean(mat(:,4,:), 'omitnan') %=13.25 with tea, 7.3333 without tea
+mean(mat(:,5,:), 'omitnan') %=6.6667 with tea, 10.75 without tea
+
 
 % e) write a script where you go through each column 
 % (subject) of data, and display for each subject
 %       (i) how many NaN there are in that subject’s data, and
-%       (ii) how many values there are that are greater or equal to 15.
+
+mat2=permute(mat,[1 3 2])
+mat_2D=reshape(mat2,8,5) % two conditions (with and without tea) combined for each subject
+% mat_2D =
+% 
+%      9    16    16    18   NaN
+%      6    16    11    11     6
+%     10    13     7    12     9
+%     10     8    19    12     5
+%     17     5     9     9    12
+%    NaN     9   NaN   NaN     5
+%      5     6    18     5    12
+%    NaN    18    20     8    14
+
+count(string(num2str(mat_2D')),"NaN")
+% Each Subject's number of NaN values:
+%      2
+%      0
+%      1
+%      1
+%      1
+
+% (ii) how many values there are that are greater or equal to 15.
+
 
 %% Q 4.3: Logical operations, mod.
 
@@ -165,8 +186,10 @@ mean(mat(:,8,:), 'omitnan')
 % the script prints “x is a negative non-integer”
 if x>=0 && mod(x,2)==0
     disp('x is an even integer')
+
 elseif x>0 && mod(x,2)==1
     disp('x is an odd integer')
+
 elseif x>0 && (round(x)==x)==0
     disp('x is a positive non-integer')
   
