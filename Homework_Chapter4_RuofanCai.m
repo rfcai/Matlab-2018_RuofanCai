@@ -140,11 +140,12 @@ mean(mat(:,3,:), 'omitnan') %=13.25 with tea, 15.6667 without tea
 mean(mat(:,4,:), 'omitnan') %=13.25 with tea, 7.3333 without tea
 mean(mat(:,5,:), 'omitnan') %=6.6667 with tea, 10.75 without tea
 
+a=nanmean(nanmean(newmat,1),3);
 
 % e) write a script where you go through each column 
 % (subject) of data, and display for each subject
 %       (i) how many NaN there are in that subject’s data, and
-
+squeeze(newmat(:,s:,:));
 mat2=permute(mat,[1 3 2])
 mat_2D=reshape(mat2,8,5) % two conditions (with and without tea) combined for each subject
 % mat_2D =
@@ -167,7 +168,6 @@ count(string(num2str(mat_2D')),"NaN")
 %      1
 
 % (ii) how many values there are that are greater or equal to 15.
-
 
 %% Q 4.3: Logical operations, mod.
 
@@ -210,7 +210,7 @@ end
 
 
 count=1;
-roll = ceil(rand(1,4)*6);
+roll = ceil(randi(1:4)*6);
 while sum(roll)~=20
     disp (sum(roll))
     count=count+1;
