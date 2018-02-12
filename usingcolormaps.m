@@ -9,6 +9,6 @@ axis off;
 for i=1:10
     pp(i,:) = i/10
     colormap(pp)
-    pause
+    
 end
 
