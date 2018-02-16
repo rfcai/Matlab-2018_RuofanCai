@@ -128,46 +128,34 @@ ratID=sort(ratID(1:50))
 binsteps=1:100:10000;
 [X, Y]=meshgrid(1:length(ratID), 1:length(binsteps))
 per=(Y+randi(10, size(Y))-5)
-per(per>100)=100; per(per<0)=0;
+per(per>100)=100; per(per<0)=0
 
 % a) image the rats performance in a matrix with trials along the x axis and rats along the y axis using a colormap that varies between white for 100% correct and black for 0% correct (not using imagesc)
 
 figure(1)
 
 image(per')
-% newmat=reshape(per, 5000,1)
-% pod=repmat(newmat,3)
-% 
-% colormap(pod/100)
+newmat=reshape(per, 5000,1)
+pod=repmat(newmat,3)
+
+colormap(pod/100)
 
 % b) change the colormap so that values above 90% are white and values below 10% are black.
-% per(per>90)=100; per(per<10)=0;
-% figure(2)
-cmap=gray(100);
-cmap(1:10,:)= 0;
-cmap(91:100,:)= 1;
-colormap(cmap)
+per(per>90)=100; per(per<10)=0;
+figure(2)
+
 image(per')
-colormap(cmap)
+newmat=reshape(per, 5000,1)
+pod=repmat(newmat,3)
+
+colormap(pod/100)
 
 % c) how many rats performed above 66% correct between trials 6001-7001?
 subper=per(61:71,:)
-mnsubper=mean(subper, 1);
-length(find(mnsubper>66))
+length(find(subper>66))
 % d) which rats were they?
-ratID(find(mnsubper>66))
-
+[row, col]=find(subper>66)
 % all 50 rats.
 % e) How many trials would be needed for 40/50 rats to be performing above 80%.
-
-per80=per>80;
-numover80=sum(per80,2);
-minTover80=find(numover80>40);
-minTover80(1);
-binsteps(minTover80)
-
 % f) It turns out that for the rats with even ID numbers (2, 4, 6 10 etc.) the recording machine was on the blink for an interval between the 5678th trial and the 7533rd trial. Convert those numbers to NaN.
 % 
-badRats=find(mod(ratID,2)==0);
-per( 56:76, find(mod(ratID,2)==0))=NaN;
-image(per)
