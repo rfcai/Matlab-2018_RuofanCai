@@ -1,0 +1,1 @@
+function [ stim ] = make2Dsinewave(sim)

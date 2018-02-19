@@ -133,7 +133,8 @@ figure(1)
 image(per')
 newmat=reshape(per, 5000,1)
 pod=repmat(newmat,3)
-
+xlabel('Trial');
+ylabel('Rat');
 colormap(pod/100)
 
 % b) change the colormap so that values above 90% are white and values below 10% are black.
@@ -145,6 +146,8 @@ newmat=reshape(per, 5000,1)
 pod=repmat(newmat,3)
 
 colormap(pod/100)
+
+colorbar
 
 % c) how many rats performed above 66% correct between trials 6001-7001?
 subper=per(61:71,:)

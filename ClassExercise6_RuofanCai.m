@@ -1,6 +1,7 @@
 %% 6.1
-n=101
-[X,Y] = meshgrid(linspace(-1,1,n));
+m=100
+n=round(100/.618);
+[X,Y] = meshgrid(linspace(-1,1,m));
 X(30:40, 10:90)=.25
 X(60:70, 10:90)=.75
 imagesc(X);
@@ -12,8 +13,24 @@ figure(3)
 colormap(summer)
 
 %% 6.2
-n=101
-[X,Y] = meshgrid(linspace(-1,1,n);
+n=701
+nseg=6
+radius=.7;
 
-sqrt(X.^2+Y.^2)
-% :(((
+[X,Y] = meshgrid(linspace(-1,1,n));
+
+image([X,Y]); colormap(gray(256))
+F=mod(atan2(X, Y), pi/6);
+imagesc(F); colormap(gray(256))
+axis equal
+
+radiusimage=sqrt(X.^2+Y.^2);
+aperture=F;
+aperture(radiusimage<radius)=1;
+% aperture(radiusimage>=radius)=0;
+
+illusion=mod(atan2(Y,X)./pi*nseg,1).*aperture;
+imagesc(illusion);
+axis square
+axis off
+colormap(gray(256))
