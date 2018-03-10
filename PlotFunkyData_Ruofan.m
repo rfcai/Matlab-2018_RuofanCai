@@ -1,15 +1,18 @@
 clear all
 
+%% load in data 
+% [~, headers]=xlsread('Psych315W18survey.csv', 'A1:AP1'); 
+% [~, ~, data]=xlsread('Psych315W18survey.csv', 'A2:AP153'); 
+% Macs cannot open the csv file with the provided command even after changing 
+% the csv's to xls's - there was still a warning about "basic mode"...
+% so Geoff provided the matlab file named "survey.mat" which contains the
+% same data. but that introduced more changes to the homework questions, so
+% I just commented out the original template you provided.
 
-%% load in data
-% [~, headers]=xlsread('Psych315W18survey.csv', 'A1:AP1');
-% [~, ~, data]=xlsread('Psych315W18survey.csv', 'A2:AP153');
-% Macs cannot open the csv file, so Geoff provided us with the matlab file
-% named "survey.m" which contains the same data.
-load survey
-%% breakdown of computers by gender 
-p.gender_class
+load survey 
 
+%% breakdown of computers by gender  
+p.gender_class 
 for i=1:4;
     for j=1:2;
         f(i,j)= sum(p.computer==i & p.gender==j);
