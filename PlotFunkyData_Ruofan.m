@@ -50,7 +50,7 @@ sterr=sqrt([[sum(p.gender==1) * f(1,1) * f(2,1)]./sum(p.gender==1) ...
            [sum(p.gender==2) * f(2,1) * f(2,2)]./sum(p.gender==1) ...
            [sum(p.gender==2) * f(2,1) * f(2,2)]./sum(p.gender==1)]);
 a2 = subplot(2,2,2); title('bar plot with errorbars');
-p2 = errorbar([bar(f)], sterr)
+p2 = errorbar(f, sterr)
 % gender_header=find(strcmp(headers,'gender'));
 % pc_header=find(strcmp(headers,'computer'));
 % 
@@ -146,7 +146,10 @@ ylabel('Hours of sleep')
 % facebookfriends
 figure(3);
 subplot(1,2,1);
-plot3d(p.sleep, p.games_hours, p.friends, 'ko')
+h=plot3(p.sleep, p.games_hours, p.friends, 'ko');
+xlabel('sleep');
+ylabel('gaming hours');
+zlabel('friends');
 
 % ================================% 
 % ================================% 
@@ -156,6 +159,10 @@ plot3d(p.sleep, p.games_hours, p.friends, 'ko')
 % Handedness and grades
 subplot(1,2,2);
 plot(p.hand, p.Exam1, 'ko')
+set(gca, 'XLim', [.5 2.5]);
+set(gca, 'YLim', [0 105]);
+set(gca, 'XTick', [ 1 2]);
+set(gca, 'XTickLabel', {'left', 'right'})
 xlabel('Handedness')
 ylabel('grade')
 
